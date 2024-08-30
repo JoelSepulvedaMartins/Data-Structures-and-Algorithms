@@ -1,10 +1,11 @@
 import java.util.*;
 
 public class BinarySearch {
-    //Main para teste de funcionamento do algoritmo 
+    // Main para teste de funcionamento do algoritmo
     public static void main(String[] args) {
+        int arraySize = 100000000;
 
-        // LinkedList
+        // // LinkedList
         LinkedList<Integer> linkedList = new LinkedList<>(Arrays.asList(8, 10, 25, 28, 29, 35, 45, 57, 100));
         int index1 = binarySearchAlg(8, linkedList);
         printResult(index1);
@@ -25,35 +26,32 @@ public class BinarySearch {
         index1 = binarySearchAlg(100, linkedList);
 
         // ArrayList
-        ArrayList<Integer> arrayList = new ArrayList<>(Arrays.asList(3, 7, 12, 18, 22, 27, 31, 37, 40, 46, 52, 56, 62,
-                67, 71, 76, 81, 85, 91, 96,
-                103, 108, 113, 119, 124, 130, 135, 140, 145, 151, 157, 163, 168, 174, 179, 185, 191, 197, 203, 209,
-                215, 221, 227, 233, 239, 245, 251, 257, 263, 269, 275, 281, 287, 293, 299, 305, 311, 317, 323, 329,
-                335, 341, 347, 353, 359, 365, 371, 377, 383, 389, 395, 401, 407, 413, 419, 425, 431, 437, 443, 449,
-                455, 461, 467, 473, 479, 485, 491, 497, 503, 509, 515, 521, 527, 533, 539, 545, 551, 557, 563, 569,
-                575, 581, 587, 593, 599, 605, 611, 617, 623, 629, 635, 641, 647, 653, 659, 665, 671, 677, 683, 689,
-                695, 701, 707, 713, 719, 725, 731, 737, 743, 749, 755, 761, 767, 773, 779, 785, 791, 797, 803, 809,
-                815, 821, 827, 833, 839, 845, 851, 857, 863, 869, 875, 881, 887, 893, 899, 905, 911, 917, 923, 929,
-                935, 941, 947, 953, 959, 965, 971, 977, 983, 989, 995, 1000));
+        ArrayList<Integer> arrayList = new ArrayList<>(Arrays.asList());
+        // Gera uma ArrayList Crescente
+        for (int i = 0; i < arraySize; i++) {
+
+            arrayList.add(i);
+        }
+
         int index2 = binarySearchAlg(25, arrayList);
 
         printResult(index2);
 
         // array de Objetos
-        Integer[] array = { 3, 7, 12, 18, 22, 27, 31, 37, 40, 46, 52, 56, 62, 67, 71, 76, 81, 85, 91, 96,
-                103, 108, 113, 119, 124, 130, 135, 140, 145, 151, 157, 163, 168, 174, 179, 185, 191, 197, 203, 209,
-                215, 221, 227, 233, 239, 245, 251, 257, 263, 269, 275, 281, 287, 293, 299, 305, 311, 317, 323, 329,
-                335, 341, 347, 353, 359, 365, 371, 377, 383, 389, 395, 401, 407, 413, 419, 425, 431, 437, 443, 449,
-                455, 461, 467, 473, 479, 485, 491, 497, 503, 509, 515, 521, 527, 533, 539, 545, 551, 557, 563, 569,
-                575, 581, 587, 593, 599, 605, 611, 617, 623, 629, 635, 641, 647, 653, 659, 665, 671, 677, 683, 689,
-                695, 701, 707, 713, 719, 725, 731, 737, 743, 749, 755, 761, 767, 773, 779, 785, 791, 797, 803, 809,
-                815, 821, 827, 833, 839, 845, 851, 857, 863, 869, 875, 881, 887, 893, 899, 905, 911, 917, 923, 929,
-                935, 941, 947, 953, 959, 965, 971, 977, 983, 989, 995, 1000 };
+
+        Integer[] array = new Integer[arraySize];
+        // Gera um array crescente
+        for (int i = 0; i < arraySize; i++) {
+
+            array[i] = i;
+        }
+
         int index3 = binarySearchAlg(45, array);
 
         printResult(index3);
 
     }
+
     // Print do resutado
     public static void printResult(int index) {
         if (index != -1) {
@@ -73,20 +71,20 @@ public class BinarySearch {
         int high = arraySortedCrescent.size() - 1;
 
         while (low <= high) {
-            int mid = low + (high - low) / 2; // Para evitar Overflow  no calculo em arrays muito grandes
+            int mid = low + (high - low) / 2; // Para evitar Overflow no calculo em arrays muito grandes
 
-            // Compara o  elemento do meio   com o valor buscado
+            // Compara o elemento do meio com o valor buscado
             if (arraySortedCrescent.get(mid).compareTo(dataSearch) == 0) {
 
-                return mid; 
+                return mid;
             }
             System.out.println("Elemento encontrado no indice: " + mid + ". Elemento array: "
                     + arraySortedCrescent.get(mid) + "  Objetivo:  " + dataSearch);
-            // Se o valor no   meio for menor   busca na metade superior
+            // Se o valor no meio for menor busca na metade superior
             if (arraySortedCrescent.get(mid).compareTo(dataSearch) < 0) {
                 low = mid + 1;
             }
-            // Se o valor no mei o for maior   busca na metade inferior
+            // Se o valor no mei o for maior busca na metade inferior
             else {
                 high = mid - 1;
             }
@@ -95,7 +93,7 @@ public class BinarySearch {
         return -1; // Elemento nao encontrado
     }
 
-    // OverLoad  do metodo para aceitar  arrays diretamente
+    // OverLoad do metodo para aceitar arrays diretamente
     public static <T extends Comparable<T>> int binarySearchAlg(T dataSearch, T[] arraySortedCrescent) {
         int low = 0;
         int high = arraySortedCrescent.length - 1;
@@ -111,11 +109,11 @@ public class BinarySearch {
             System.out.println("Elemento encontrado no indice: " + mid + " Elemento array: " + arraySortedCrescent[mid]
                     + " Objetivo:  " + dataSearch);
             if (arraySortedCrescent[mid].compareTo(dataSearch) < 0) {
-                low = mid + 1;
+                low = mid + 1; // REALIZA A PODA
             }
 
             else {
-                high = mid - 1;
+                high = mid - 1; // REALIZA A PODA
             }
         }
 
